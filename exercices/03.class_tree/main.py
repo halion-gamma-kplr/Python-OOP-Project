@@ -63,7 +63,7 @@ def create_tree_from_dict(tree, parent_node_id, json_dict):
             
             # Créer récursivement le sous-arbre pour le dictionnaire courant
             if "subclasses" in value :
-                create_tree_from_dict(tree, new_node_id, value)
+                create_tree_from_dict(tree, new_node_id, value["subclasses"])
         else:
             # Créer un nouveau noeud pour la feuille courante du dictionnaire
             leaf_node_id = f"{parent_node_id}.{key}"
@@ -82,7 +82,7 @@ def main():
     '''
     my_tree = Tree()
     # Créer le noeud racine pour l'arbre
-    my_tree.create_node(tag="Racine", identifier="racine")
+    my_tree.create_node(tag="Product Classes Hierarchy", identifier="racine")
 
     # Charger les données JSON depuis un fichier et créer la structure de l'arbre à partir du dictionnaire
     json_dict = json_dict_from_file()
