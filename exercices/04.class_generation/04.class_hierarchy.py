@@ -82,6 +82,7 @@ def main():
     # Appeler la méthode generate_class_hierarchy pour générer le code des classes automatiquement en se basant sur le dictionnaire json_dict
     # Stocker le résultat de la classe dans une variable
     content = generate_class_hierarchy(json_dict)
+    print(content)
     # Appeler la fonction write_content pour stocker le code des classes dans un fichier Python 'product_classes.py'
     write_content(content,"/workspaces/Python-OOP-Project/exercices/04.class_generation/classes.py")
 

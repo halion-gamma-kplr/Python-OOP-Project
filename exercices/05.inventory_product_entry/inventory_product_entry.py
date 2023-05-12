@@ -1,5 +1,6 @@
 # Vous allez créer une classe InventoryProductEntry qui a pour role 
 # de représenter une entrée d'inventaire pour un produit spécifique.
+from classes import *
 
 class InventoryProductEntry:
     # Initialisation de la classe, en prenant en argument un objet Product et une quantité initiale
@@ -15,6 +16,10 @@ class InventoryProductEntry:
         la variable 'expenses' qui stocke le total des dépenses pour restocker le produit
         
         """
+        self.product = product
+        self.quantity = quantity
+        self.sales = 0
+        self.expenses = 0
 
     #Méthode Sell
     """
@@ -22,6 +27,7 @@ class InventoryProductEntry:
     Elle met également à jour les ventes totales pour le produit.
     
     """
+        
     def sell(self, quantity):
         #Avant de mettre à jour l'état du stocke du produit, on doit vérifier si on a déjà une quantité suffisante à vendre.
         """
@@ -36,7 +42,14 @@ class InventoryProductEntry:
             Retourner Vrai
         
         """
-    
+        if self.quantity < quantity :
+            print("Le stock du produit [nom du produit] est insuffisant.")
+            return False
+        else :
+            self.quantity -= quantity
+            self.sales += quantity * self.product.price
+            return True
+        
     #Méthode Restock
     """
     La méthode restock est utilisée pour augmenter la quantité en stock lorsqu'un nouveau stock de produit est reçu. 
@@ -47,6 +60,8 @@ class InventoryProductEntry:
         Ajouter la quantité reçue à la quantité en stock
         Ajouter le coût total de la nouvelle quantité reçue  à la variable 'expenses' en multipliant la quantité reçue par le coût du produit
         """
+        self.quantity += quantity
+        self.expenses += quantity * self.product.cost
 
     #Méthode repr
     """
@@ -56,3 +71,18 @@ class InventoryProductEntry:
     """
     def __repr__(self):
         # Retourner une chaîne de caractères formatée contenant le nom du produit, la marque, la quantité en stock et le prix du produit.
+        return "Produit : " + self.product.name + "\nMarque : " + self.product.marque + "\nQuantité en stock : " + str(self.quantity) + "\nPrix du produit : " + str(self.product.price)
+
+def main():
+    produit = Product(10,15,'Lewis')   
+    table = InventoryProductEntry(produit, 50)
+    table.restock(50)
+    table.sell(75)
+    print(table)
+    print(table.sales)
+    print(table.expenses)
+
+
+if __name__ == '__main__':
+    # Appeler la fonction principale
+    main()
