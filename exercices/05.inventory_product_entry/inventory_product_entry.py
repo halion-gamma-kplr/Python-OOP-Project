@@ -74,13 +74,13 @@ class InventoryProductEntry:
         return "Produit : " + self.product.name + "\nMarque : " + self.product.marque + "\nQuantité en stock : " + str(self.quantity) + "\nPrix du produit : " + str(self.product.price)
 
 def main():
-    produit = Product(10,15,'Lewis')   
-    table = InventoryProductEntry(produit, 50)
-    table.restock(50)
-    table.sell(75)
-    print(table)
-    print(table.sales)
-    print(table.expenses)
+    chaise = Chaise('bois','bleu','110*120*130',50,100,'Ikea')   
+    chaise = InventoryProductEntry(chaise, 50)
+    chaise.restock(50)
+    chaise.sell(75)
+    print(chaise)
+    print(chaise.sales)
+    print(chaise.expenses)
 
 
 if __name__ == '__main__':
